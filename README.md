@@ -35,43 +35,40 @@ The SOC received an alert in their SIEM for 'Local to Local Port Scanning' where
 3. Confirmed that the provided PCAP matched the alert timeline, ensuring accurate analysis.
 
 ![Ref 2  time frame](https://github.com/user-attachments/assets/485203e2-4419-4fbf-b6c0-6cc5764c3a17)
-Ref 1. VirtualBox and VM installation.
+Ref 1. Investigating PCAP File Properties.
 
 
+#### Step 2: Analyzing Protocol Hierarchies
+1. Identified active protocols:
+    - SSH
+    - DNS
+    - HTTP
+    - SMB
+2. These protocols indicated potential lateral movement opportunities within the network.
 
-#### Step 2: Configuring Virtual Machines (VMs)
-
-1. Set Up Networking: Configure each VM's network settings to manage connectivity, essential for tasks such as malware analysis or network scanning, ensuring these operations do not impact the host machine.
-    - Key Network Options in VirtualBox:
-        - NAT: Grants VM internet access via the host's network.
-        - Bridge Adapter: Connects VMs to the same network as the host, where each VM acts as an independent device.
-        - Internal Network: Connects VMs only to each other, isolating them from the host and the internet. Ideal for malware testing and secure communication between VMs.
-        - Host-Only Network: Creates a private network between VMs and the host, with no internet access.
-        - NAT Network: Similar to NAT, but allows multiple VMs on the same network with internet access.
-        - Cloud Network: Connects VMs to the cloud.
-        - Not Attached: Disconnects VMs from any network.
-2. Preferred Network Configuration: Using the Internal Network is recommended to isolate the VMs from the host and internet, allowing safe internal communication for testing purposes.
-
-![Ref 2  Network list](https://github.com/user-attachments/assets/2e4c13f2-802a-4bd3-b554-6826c4bf0ae7)
-Ref 2. Network configurations.
+![Ref 3  Protocol Hierarchy](https://github.com/user-attachments/assets/9737a1a9-8d09-4dcf-9926-03f60924043c)
+Ref 2. Analyzing Protocol Hierarchies.
 
 
-#### Step 3: Assigning IP Addresses to the VMs
+#### Step 3: Detecting Port Scanning Activity
+1. Examined conversation details under the IPv4 and TCP tabs.
+2. Noted that source IP 10.251.96.4 consistently targeted multiple ports on 10.251.96.5, with the same source port (41675) being used repeatedly.
+    - This consistent behavior strongly indicated port scanning activity.
 
-1. Windows VM: Assign a static IP address to ensure consistent connectivity during testing.
-    - Verify the IP assignment using ipconfig in Command Prompt to confirm accurate network settings.
-2. Kali Linux VM: Similarly, assign and check the IP address using ifconfig.
-    - Document the IP configurations to maintain consistency and avoid conflicts.
-![Ref 3  Assigning windows IP Address](https://github.com/user-attachments/assets/d107fa5c-b112-4690-8beb-13d7021f4e28)
-Ref 3. IP assignment for Windows.
-
-![Ref 4  Assigning Kali IP Address](https://github.com/user-attachments/assets/50f84fa5-5568-4a64-a5a1-8bd8fe599125)
-Ref 4. IP assignment for Kali Linux.
+![Detecting Port Scanning Activity](https://github.com/user-attachments/assets/88084fba-6521-437b-8f31-3e0563a2795d)
+Ref 3. Detecting Port Scanning Activity.
 
 
-#### Step 4: Testing Connectivity
+#### Step 4: HTTP Stream Analysis
+1. Investigated an HTTP POST request from packet 38.
+2. Reconstructed the HTTP stream and discovered a login attempt with credentials:
+    - Username: admin
+    - Password: Admin@1234
+3. Decoded special characters (e.g., %40 → @) to interpret the full password.
+4. Observed that the login occurred over HTTP instead of HTTPS, indicating insecure communication.
 
-1. To test connectivity, I performed a ping test from the Windows VM to the Kali VM, generating network traffic between the two systems. This confirmed that the machines were communicating within the isolated network, ensuring a functional setup for further testing and simulations.
+![Ref 4  Explore post request](https://github.com/user-attachments/assets/04fdd3a4-8485-4557-8e49-6ee4c9d6c294)
+Ref 4. Investigated an HTTP POST request.
 
 ## Practical Applications and Organizational Benefits
 
