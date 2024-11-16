@@ -70,22 +70,44 @@ Ref 3. Detecting Port Scanning Activity.
 ![Ref 4  Explore post request](https://github.com/user-attachments/assets/04fdd3a4-8485-4557-8e49-6ee4c9d6c294)
 Ref 4. Investigated an HTTP POST request.
 
+
+#### Step 5: Identifying Attack Tools
+1. Recognized the use of Gobuster v3.0.1, a directory brute-forcing tool, from the user agent string.
+2. Detected SQLmap v1.4.7, an automated SQL injection tool, used for unauthorized database access attempts.
+![Ref 6  Exploring a GET request on a packet we notice the user agent as gobuster](https://github.com/user-attachments/assets/ce8aff31-5470-4e2e-8ebc-b3de869f1b03)
+Ref 5. Recognized the use of Gobuster v3.0.1
+
+![Ref 8  Noticed another user agent sqlmap](https://github.com/user-attachments/assets/4ded5263-eedb-4171-963f-d4777fd83110)
+Ref 6. Detected SQLmap v1.4.7
+
+![Ref 9  An SQL attack following](https://github.com/user-attachments/assets/83ad6804-cbce-4537-8911-24cadead71aa)
+Ref 7. An SQL Attack detected
+
+#### Step 6: Web Shell Analysis
+1. Analyzed a callback from 10.251.96.5 to 10.251.96.4 on port 4422, which occurred during the attack.
+2. Reconstructed the TCP stream to identify the upload of a malicious web shell (db_functions.php).
+3. Observed attacker commands executed on the compromised server:
+    - whoami, cd, ls: Discovery commands.
+    - python: Used to establish a reverse shell.
+    - rm db: Attempted file removal.
+
+![Ref 10  successful webshell](https://github.com/user-attachments/assets/c931497d-2e18-46df-8af1-fd02e14ceed2)
+Ref 8. Web Shell Analysis
+
 ## Practical Applications and Organizational Benefits
 
-#### 1. Risk-Free Testing Environment:
-A well-structured virtual lab provides a safe environment for analyzing malware, understanding its behavior, and studying indicators of compromise without risking real-world systems. 
+#### 1. Threat Detection and Incident Response
+SOC teams can use similar techniques to identify malicious activities like port scanning, unauthorized logins, and web shell uploads in their environments.
 
-#### 2. Network Security Protocols and Configurations:
-In a professional setting, these skills translate to efficient management of firewalls, secure network designs, and troubleshooting network issues to prevent unauthorized access.
+#### 2. Malicious Tool Recognition
+Understanding tools like Gobuster and SQLmap enhances the ability to detect and mitigate automated attacks.
 
-#### 3. Cybersecurity Training and Skill Development:
-The ability to simulate real-world attacks, practice defensive strategies, and refine response tactics benefits organizations by ensuring their security teams are well-prepared for emerging threats.
+#### 3. Post-Attack Forensics
+Reconstructing attacker activity enables organizations to identify vulnerabilities and strengthen defenses.
 
-#### 4. Cost-Effective Solution for Cybersecurity Skills Development:
-Virtual labs are highly cost-effective, requiring minimal physical hardware and infrastructure. By adopting similar lab setups, organizations can train their teams in the latest cybersecurity tools and techniques while minimizing costs.
+#### 4. Skill Development
+Hands-on analysis of PCAP files provides real-world experience with network monitoring tools and techniques.
 
-#### 5. Practical Experience with Cybersecurity Tools and Techniques:
-From IP address management to traffic monitoring and network configurations, this project has provided hands-on experience with essential cybersecurity tools and practices.
 
 ## Conclusion 
-By implementing a home lab environment, I have developed a robust foundation in cybersecurity principles, network management, and virtual environment configurations, which are crucial for protecting modern organizations against cyber threats.
+Through this project, I analyzed malicious network activity, identified attack patterns, and gained valuable experience with incident response. This exercise reinforced the importance of traffic analysis and the ability to detect, investigate, and respond to cybersecurity threats effectively.
