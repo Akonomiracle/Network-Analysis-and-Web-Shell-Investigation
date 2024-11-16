@@ -2,45 +2,39 @@
 
 ## Introduction
 
-A cybersecurity home lab is a controlled environment used to simulate real-world network and security scenarios, allowing for hands-on practice in a safe setting. VirtualBox, an open-source software, enables users to run multiple virtual machines (VMs) on a single host machine, with each VM operating as a separate computer. This setup facilitates safe experimentation with security tools, malware analysis, and network configurations without impacting the host system.
+In cybersecurity, internal threats can be as dangerous as external ones, and understanding how to analyze network traffic is a critical skill. This lab simulates a real-world scenario where an alert is triggered for unusual internal activity, and the task is to investigate whether the behavior is malicious. The focus of this analysis is to examine network traffic using Wireshark, identify patterns, and determine the intent behind the observed activities.
 
-## Objective
+## Scenario
 
-The primary objective of this home lab is to create a secure environment for testing cybersecurity concepts and performing activities like malware analysis, threat hunting, and vulnerability assessments. Once configured, the lab can also be used to study network traffic, evaluate security tools, and refine cybersecurity skills through real-world simulations.
+The SOC received an alert in their SIEM for 'Local to Local Port Scanning' where an internal private IP began scanning another internal system. Your task is to investigate the provided PCAP file using any tools available to determine if this activity is malicious or authorized.
 
 ### Skills Learned
 
-- Virtualization Management
-    - Installing and configuring VirtualBox and managing multiple virtual machines (VMs) independently.
-    - Familiarity with different virtualization settings and understanding their impact on VM performance and security.
+- Network Traffic Analysis
+    - Investigating PCAP files for anomalies such as port scans, unauthorized access attempts, and lateral movement.
+    - Leveraging Wireshark’s features, including protocol hierarchies and TCP stream reconstruction, to identify key activities in network traffic.
 
-- Network Configuration
-    - Setting up various network modes (NAT, Bridge, Internal Network, Host-Only) in VirtualBox to control connectivity and isolate environments as needed.
-    - Practical knowledge of network isolation, essential for malware analysis and secure testing.
+- Incident Response Techniques
+    - Identifying the use of common attacker tools like Gobuster and SQLmap.
+    - Recognizing patterns of malicious behavior, such as web shell uploads and unauthorized command execution.
 
-- IP Addressing and Network Troubleshooting
-    - Assigning static IP addresses to VMs and verifying connectivity using tools like ipconfig and ifconfig.
-    - Basic troubleshooting skills to resolve connectivity issues between virtual machines, an important skill for network diagnostics.
-
-- Security Awareness and Isolation Techniques
-    - Implementing secure practices, such as using isolated internal networks to prevent potential malware from impacting the host.
-    - Understanding how to safely analyze suspicious software in a contained environment, minimizing risk.
+- Report Writing
+    - Documenting findings to create actionable intelligence for Security Operations Centers (SOCs).
 
 ### Tools Used
 
-- VirtualBox
-- ISO Images for Operating Systems
-- Network Utilities
+- Wireshark
+- URL Decoder
 
 ## Steps
 
-#### Step 1: Installing VirtualBox & Virtual Machines
+#### Step 1: Investigating PCAP File Properties
 
-1. Begin by downloading and installing VirtualBox on your host computer, along with virtual machine (VM) ISO image files for your desired operating systems (e.g., Windows, Kali Linux).
-    - Ensure that the ISO files are compatible with VirtualBox to prevent installation issues.
-2. Load the ISO images into VirtualBox to initialize the VMs.
+1. Opened the PCAP file in Wireshark and accessed the file properties via the Statistics menu.
+2. Verified the capture date and duration: February 7, 2021, over a 15-minute span.
+3. Confirmed that the provided PCAP matched the alert timeline, ensuring accurate analysis.
 
-![Ref 1  installing kali](https://github.com/user-attachments/assets/56ab970a-d8a0-40f8-b229-c6c9381f545b)
+![Ref 2  time frame](https://github.com/user-attachments/assets/485203e2-4419-4fbf-b6c0-6cc5764c3a17)
 Ref 1. VirtualBox and VM installation.
 
 
